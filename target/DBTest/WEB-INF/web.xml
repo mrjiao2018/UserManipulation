@@ -1,0 +1,52 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+         version="2.4">
+  <display-name>Archetype Created Web Application</display-name>
+
+  <servlet>
+    <servlet-name>addUser</servlet-name>
+    <servlet-class>web.ctrl.AddUser</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>updateUser</servlet-name>
+    <servlet-class>web.ctrl.UpdateUser</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>removeUser</servlet-name>
+    <servlet-class>web.ctrl.RemoveUser</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>queryAll</servlet-name>
+    <servlet-class>web.ctrl.QueryAll</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>queryByName</servlet-name>
+    <servlet-class>web.ctrl.QueryByName</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>addUser</servlet-name>
+    <url-pattern>/add</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>updateUser</servlet-name>
+    <url-pattern>/update</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>removeUser</servlet-name>
+    <url-pattern>/remove</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>queryAll</servlet-name>
+    <url-pattern>/query1</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>queryByName</servlet-name>
+    <url-pattern>/query2</url-pattern>
+  </servlet-mapping>
+</web-app>
