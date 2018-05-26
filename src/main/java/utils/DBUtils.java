@@ -8,22 +8,10 @@ import pojo.*;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * DBUtils中的方法可以进一步封装成泛型方法
+ */
 public class DBUtils {
-    /**
-     * 创建数据表
-     *
-     * 本来可以根据javaBean的泛型对应创建表，但感觉不是本次考察重点并且实际开发中也不常用，就硬编码写死了
-     */
-    public static void createTable() {
-
-    }
-
-    /**
-     * 修改数据表结构，同样采用硬编码
-     */
-    public static void alterTable() {
-
-    }
 
     /**
      * 添加Bean
@@ -31,7 +19,14 @@ public class DBUtils {
      * @param user 传入的javaBean对象
      */
     public static void addBean(User user){
-
+        QueryRunner qr = new QueryRunner(C3P0Utils.getDataSource());
+        String sql = "insert into user values(null, ?, ?, ?)";
+        try {
+            int update = qr.update(sql, user.getName(), user.getPhoneNUmber(), user.getEmail());
+            System.out.println(update);
+        } catch (SQLException e) {
+            System.out.println("插入数据失败");
+        }
     }
 
     /**
@@ -41,7 +36,14 @@ public class DBUtils {
      * @param id 指定javaBean的id
      */
     public static void updateBean(User user, int id) {
-
+        QueryRunner qr = new QueryRunner(C3P0Utils.getDataSource());
+        String sql = "update user set name = ?, phoneNumber = ?, email = ? where id = ?";
+        try {
+            int update = qr.update(sql, user.getName(), user.getPhoneNUmber(), user.getEmail(), id);
+            System.out.println(update);
+        } catch (SQLException e) {
+            System.out.println("更新数据失败");
+        }
     }
 
     /**
@@ -50,28 +52,31 @@ public class DBUtils {
      * @param id 指定javaBean的id
      */
     public static void removeBean(int id) {
-
+        QueryRunner qr = new QueryRunner(C3P0Utils.getDataSource());
+        String sql = "delete from user where id = ?";
+        try {
+            int update = qr.update(sql, id);
+            System.out.println(update);
+        } catch (SQLException e) {
+            System.out.println("删除数据失败");
+        }
     }
 
-//    @Deprecated
-//    public static List<Client> queryAll() {
-//        QueryRunner qr = new QueryRunner(C3P0Utils.getDataSource());
-//        String sql = "SELECT * FROM studentInfo";
-//        List<Client> list = null;
-//        try {
-//            list = qr.query(sql, new BeanListHandler<Client>(Client.class));
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return list;
-//    }
     /**
      * 查询所有Bean
      *
      * @return List 返回User的List
      */
     public static List<User> queryAll() {
-        return null;
+        QueryRunner qr = new QueryRunner(C3P0Utils.getDataSource());
+        String sql = "SELECT * FROM user";
+        List<User> users = null;
+        try {
+            users = qr.query(sql, new BeanListHandler<>(User.class));
+        } catch (SQLException e) {
+            System.out.println("查询所有用户失败");
+        }
+        return users;
     }
 
     /**
@@ -81,7 +86,15 @@ public class DBUtils {
      * @return List user的List
      */
     public static List<User> queryByName(String name) {
-        return null;
+        QueryRunner qr = new QueryRunner(C3P0Utils.getDataSource());
+        String sql = "SELECT * FROM user where name = " + "\'" + name + "\'";
+        List<User> users = null;
+        try {
+            users = qr.query(sql, new BeanListHandler<>(User.class));
+        } catch (SQLException e) {
+            System.out.println("查询指定用户失败");
+        }
+        return users;
     }
 
 }

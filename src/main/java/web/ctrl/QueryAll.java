@@ -21,9 +21,11 @@ public class QueryAll extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("start");
         List<User> users = userService.getAllUsers();
-        req.setAttribute("name", "xiaoming");
-        req.getRequestDispatcher("/index.jsp").forward(req, resp);
+        for(User user : users) {
+            System.out.println(user.getName());
+        }
+        req.setAttribute("users", users);
+        req.getRequestDispatcher("index.jsp").forward(req, resp);
     }
 }

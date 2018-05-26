@@ -5,7 +5,8 @@
   Time: 下午3:04
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +36,6 @@
     <h2>基础CRUD操作</h2>
 
     <table id="dg" title="My Users" class="easyui-datagrid" style="width:700px;height:500px"
-           url="/query1"
            toolbar="#toolbar" pagination="true"
            rownumbers="true" fitColumns="true" singleSelect="true">
         <thead>
@@ -48,11 +48,13 @@
         <tbody>
 
         <%--todo el表达式完善--%>
-        <tr>
-            <td>${name}</td>
-            <td>${requestScope.age}</td>
-            <td>123</td>
-        </tr>
+        <%--<c:forEach items="${requestScope.users}" var="user">--%>
+            <%--<tr>--%>
+                <%--<td>${user.name}</td>--%>
+                <%--<td>${user.phoneNumber}</td>--%>
+                <%--<td>${user.email}</td>--%>
+            <%--</tr>--%>
+        <%--</c:forEach>--%>
 
         </tbody>
     </table>

@@ -43,10 +43,10 @@
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>queryAll</servlet-name>
-    <url-pattern>/query1</url-pattern>
+    <url-pattern>/queryAll</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>queryByName</servlet-name>
-    <url-pattern>/query2</url-pattern>
+    <url-pattern>/queryByName</url-pattern>
   </servlet-mapping>
 </web-app>
