@@ -19,9 +19,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void addUserWithProc(User user) {
+        if(user == null) {
+            System.out.println("插入用户为null，无法像数据库中插入数据");
+            return;
+        }
+        //前端提交表单时，已经加入表单信息非空验证，此处不需要再检验
+        userDao.addUserProc(user);
+    }
+
+    @Override
     public void updateUser(User user, int id) {
         int length = this.getAllUsers().size();
-        if(user == null || id < 0 || id >= length) {
+        System.out.println(id);
+        System.out.println(length);
+        if(user == null || id < 0 || id > length) {
             System.out.println("更新数据不符合规范，无法更新");
             return;
         }
@@ -31,7 +43,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void removeUser(int id) {
         int length = this.getAllUsers().size();
-        if(id < 0 || id >= length) {
+        if(id < 0 || id > length) {
             System.out.println("id越界，无法删除");
             return;
         }
@@ -43,6 +55,9 @@ public class UserServiceImpl implements UserService {
         if(name == null) {
             System.out.println("name为空，无法查询");
             return null;
+        }
+        if(name == "") {
+            return userDao.getAllUsers();
         }
         else {
             return userDao.getUsersByName(name);

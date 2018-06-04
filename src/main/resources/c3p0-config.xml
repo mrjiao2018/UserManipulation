@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <c3p0-config>
     <default-config>
-        <!--TODO 只需更改ip地址即可-->
-        <property name="jdbcUrl">jdbc:mysql://193.112.33.53:3306/dbCourseExp</property>
+        <property name="jdbcUrl">jdbc:mysql://localhost:3306/dbCourseExp</property>
         <property name="driverClass">com.mysql.jdbc.Driver</property>
-        <property name="user">user</property>
-        <property name="password">user</property>
+        <property name="user">root</property>
+        <property name="password">root</property>
 
 
         <property name="checkoutTimeout">30000</property>

@@ -3,7 +3,8 @@ package pojo;
 public class User {
     private int id;
     private String name;
-    private String phoneNUmber;
+    private String password;
+    private String phone;
     private String email;
 
     public User() {
@@ -25,12 +26,12 @@ public class User {
         this.name = name;
     }
 
-    public String getPhoneNUmber() {
-        return phoneNUmber;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhoneNUmber(String phoneNUmber) {
-        this.phoneNUmber = phoneNUmber;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getEmail() {
@@ -40,4 +41,8 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getPassword() { return password; }
+
+    public void setPassword(String password) { this.password = password; }
 }

@@ -20,9 +20,9 @@ public class DBUtils {
      */
     public static void addBean(User user){
         QueryRunner qr = new QueryRunner(C3P0Utils.getDataSource());
-        String sql = "insert into user values(null, ?, ?, ?)";
+        String sql = "insert into user values(null, ?, ?, ?, ?)";
         try {
-            int update = qr.update(sql, user.getName(), user.getPhoneNUmber(), user.getEmail());
+            int update = qr.update(sql, user.getName(), user.getPassword(), user.getPhone(), user.getEmail());
             System.out.println(update);
         } catch (SQLException e) {
             System.out.println("插入数据失败");
@@ -37,9 +37,9 @@ public class DBUtils {
      */
     public static void updateBean(User user, int id) {
         QueryRunner qr = new QueryRunner(C3P0Utils.getDataSource());
-        String sql = "update user set name = ?, phoneNumber = ?, email = ? where id = ?";
+        String sql = "update user set name = ?, password = ?, phone = ?, email = ? where id = ?";
         try {
-            int update = qr.update(sql, user.getName(), user.getPhoneNUmber(), user.getEmail(), id);
+            int update = qr.update(sql, user.getName(), user.getPassword(), user.getPhone(), user.getEmail(), id);
             System.out.println(update);
         } catch (SQLException e) {
             System.out.println("更新数据失败");
@@ -87,10 +87,10 @@ public class DBUtils {
      */
     public static List<User> queryByName(String name) {
         QueryRunner qr = new QueryRunner(C3P0Utils.getDataSource());
-        String sql = "SELECT * FROM user where name = " + "\'" + name + "\'";
+        String sql = "SELECT * FROM user where name like ?";
         List<User> users = null;
         try {
-            users = qr.query(sql, new BeanListHandler<>(User.class));
+            users = qr.query(sql, new BeanListHandler<>(User.class), ("%" + name + "%"));
         } catch (SQLException e) {
             System.out.println("查询指定用户失败");
         }

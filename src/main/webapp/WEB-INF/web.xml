@@ -31,15 +31,15 @@
 
   <servlet-mapping>
     <servlet-name>addUser</servlet-name>
-    <url-pattern>/add</url-pattern>
+    <url-pattern>/addUser</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>updateUser</servlet-name>
-    <url-pattern>/update</url-pattern>
+    <url-pattern>/updateUser</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>removeUser</servlet-name>
-    <url-pattern>/remove</url-pattern>
+    <url-pattern>/removeUser</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>queryAll</servlet-name>

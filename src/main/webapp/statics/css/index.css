@@ -1,0 +1,9 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    padding-top: 100px;
+}

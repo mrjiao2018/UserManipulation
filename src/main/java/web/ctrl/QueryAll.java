@@ -1,5 +1,6 @@
 package web.ctrl;
 
+import com.alibaba.fastjson.JSON;
 import pojo.User;
 import service.UserService;
 import service.impl.UserServiceImpl;
@@ -22,10 +23,8 @@ public class QueryAll extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<User> users = userService.getAllUsers();
-        for(User user : users) {
-            System.out.println(user.getName());
-        }
-        req.setAttribute("users", users);
-        req.getRequestDispatcher("index.jsp").forward(req, resp);
+        String jsonStr = JSON.toJSONString(users);
+        System.out.println("queryAll被请求");
+        resp.getWriter().write(jsonStr);
     }
 }

@@ -21,8 +21,11 @@ public class AddUser extends HttpServlet{
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
         resp.setContentType("text/html; charset=utf-8");
-
         User user = new User();
-
+        user.setName(req.getParameter("name"));
+        user.setPassword(req.getParameter("password"));
+        user.setEmail(req.getParameter("email"));
+        user.setPhone(req.getParameter("phone"));
+        userService.addUser(user);
     }
 }

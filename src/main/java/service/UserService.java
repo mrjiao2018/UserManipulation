@@ -13,6 +13,13 @@ public interface UserService {
     void addUser(User user);
 
     /**
+     * 添加user
+     *
+     * @param user 表单提交的user
+     */
+    void addUserWithProc(User user);
+
+    /**
      * 更新user
      *
      * @param user 表单提交的user
