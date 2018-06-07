@@ -1,9 +1,13 @@
 package dao;
 
 import org.apache.commons.dbutils.QueryRunner;
+import pojo.User;
 import utils.C3P0Utils;
 
+import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DatabaseDao {
     /**
@@ -33,6 +37,74 @@ public class DatabaseDao {
             System.out.println(update);
         } catch (SQLException e) {
             System.out.println("修改表失败");
+        }
+    }
+
+    /**
+     * 创建触发器,向user表中插入记录时，自动向log表中插入记录
+     */
+    public static void createInsertTrigger() {
+        QueryRunner qr = new QueryRunner(C3P0Utils.getDataSource());
+        String sql = "delimiter $\n" +
+                "create trigger user_insert_trigger\n" +
+                "after insert\n" +
+                "on user\n" +
+                "for each row\n" +
+                "begin\n" +
+                "insert into log values(null, new.name, \"insert\", NOW());\n" +
+                "end;\n" +
+                "$";
+        try {
+            int update = qr.update(sql);
+            System.out.println(update);
+        } catch (SQLException e) {
+            System.out.println("向log表插入数据失败");
+        }
+    }
+
+    /**
+     * 创建触发器,向user表中删除记录时，自动向log表中插入记录
+     */
+    public static void createDeleteTrigger() {
+        QueryRunner qr = new QueryRunner(C3P0Utils.getDataSource());
+        String sql = "delimiter $\n" +
+                "create trigger user_delete_trigger\n" +
+                "after delete\n" +
+                "on user\n" +
+                "for each row\n" +
+                "begin\n" +
+                "insert into log values(null, old.name, \"delete\", NOW());\n" +
+                "end;\n" +
+                "$";
+        try {
+            int update = qr.update(sql);
+            System.out.println(update);
+        } catch (SQLException e) {
+            System.out.println("向log表插入数据失败");
+        }
+    }
+
+
+    /**
+     * 创建存储过程
+     */
+    public static void createProcedure(User user) {
+        Connection connection = C3P0Utils.getConnection();
+        String procedureSql = "delimiter $\n" +
+                "create procedure queryUserPro()\n" +
+                "begin\n" +
+                "select * from user;\n" +
+                "end;\n" +
+                "$\n";
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(procedureSql);
+            connection.commit();
+            CallableStatement callableStatement = connection.prepareCall("CALL queryUserPro()");
+            callableStatement.execute();
+            connection.commit();
+        } catch (Exception e) {
+            System.out.println("调用存储过程失败");
         }
     }
 }

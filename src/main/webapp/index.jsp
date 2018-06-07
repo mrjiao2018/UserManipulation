@@ -15,26 +15,29 @@
     <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/color.css">
-    <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/demo/demo.css">
+    <%--<link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/demo/demo.css">--%>
     <link rel="stylesheet" type="text/css" href="statics/css/index.css">
     <link rel="stylesheet" type="text/css" href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css">
+
+
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
     <script type="text/javascript" src="statics/js/jquery.form.js"></script>
     <script type="text/javascript" src="https://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
 </head>
 <body>
     <div class="container">
-        <h2>数据库期末实验课作业：数据库基础CRUD操作</h2>
+        <h2>java web项目：数据库管理程序</h2>
 
         <table id="dg" title="My Users" class="easyui-datagrid" style="width:700px;height:450px"
                toolbar="#toolbar" pagination="true"
                rownumbers="true" fitColumns="true" singleSelect="true">
             <thead>
             <tr>
-                <th field="name" width="50"> Name</th>
-                <th field="password" width="50">Password</th>
-                <th field="phone" width="50">Phone</th>
-                <th field="email" width="50">Email</th>
+                <th field="id" width="40"> Id</th>
+                <th field="name" width="40"> Name</th>
+                <th field="password" width="40">Password</th>
+                <th field="phone" width="40">Phone</th>
+                <th field="email" width="40">Email</th>
             </tr>
             </thead>
         </table>
@@ -119,7 +122,6 @@
             $.messager.confirm('Confirm','Are you sure you want to destroy this user?',function(r){
                 if (r){
                     $.post('removeUser',{id:row.id},function(result){
-
                     },'json');
                     $('#dg').datagrid('reload');    // reload the user data
                 }

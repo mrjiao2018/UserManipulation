@@ -47,7 +47,7 @@ public class DBUtils {
     }
 
     /**
-     * 更新Bean
+     * 删除Bean
      *
      * @param id 指定javaBean的id
      */

@@ -30,9 +30,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(User user, int id) {
-        int length = this.getAllUsers().size();
-        System.out.println(id);
-        System.out.println(length);
+        List<User> users = this.getAllUsers();
+        int length = users.get(users.size()-1).getId();
         if(user == null || id < 0 || id > length) {
             System.out.println("更新数据不符合规范，无法更新");
             return;
@@ -42,7 +41,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void removeUser(int id) {
-        int length = this.getAllUsers().size();
+        List<User> users = this.getAllUsers();
+        int length = users.get(users.size()-1).getId();
         if(id < 0 || id > length) {
             System.out.println("id越界，无法删除");
             return;

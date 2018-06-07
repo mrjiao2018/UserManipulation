@@ -24,7 +24,6 @@ public class QueryAll extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<User> users = userService.getAllUsers();
         String jsonStr = JSON.toJSONString(users);
-        System.out.println("queryAll被请求");
         resp.getWriter().write(jsonStr);
     }
 }
