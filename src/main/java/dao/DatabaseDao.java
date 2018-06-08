@@ -86,12 +86,12 @@ public class DatabaseDao {
 
 
     /**
-     * 创建存储过程
+     * 创建存储过程1
      */
-    public static void createProcedure(User user) {
+    public static void selectProcedure() {
         Connection connection = C3P0Utils.getConnection();
         String procedureSql = "delimiter $\n" +
-                "create procedure queryUserPro()\n" +
+                "create procedure query_user_pro()\n" +
                 "begin\n" +
                 "select * from user;\n" +
                 "end;\n" +
@@ -100,8 +100,25 @@ public class DatabaseDao {
             Statement statement = connection.createStatement();
             statement.execute(procedureSql);
             connection.commit();
-            CallableStatement callableStatement = connection.prepareCall("CALL queryUserPro()");
-            callableStatement.execute();
+        } catch (Exception e) {
+            System.out.println("调用存储过程失败");
+        }
+    }
+
+    /**
+     * 创建存储过程2
+     */
+    public static void updateLogProcedure() {
+        Connection connection = C3P0Utils.getConnection();
+        String procedureSql = "delimiter $\n" +
+                "create procedure update_log_pro(in user_id int(16), in user_name varchar(16))\n" +
+                "begin\n" +
+                "insert into log values(null, user_id, user_name, \"insert\", NOW());\n" +
+                "end;\n" +
+                "$";
+        try {
+            Statement statement = connection.createStatement();
+            statement.execute(procedureSql);
             connection.commit();
         } catch (Exception e) {
             System.out.println("调用存储过程失败");

@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/themes/color.css">
     <%--<link rel="stylesheet" type="text/css" href="https://www.jeasyui.com/easyui/demo/demo.css">--%>
     <link rel="stylesheet" type="text/css" href="statics/css/index.css">
+    <link rel="stylesheet" type="text/css" href="statics/css/index2.css">
     <link rel="stylesheet" type="text/css" href="http://cdn.amazeui.org/amazeui/2.7.2/css/amazeui.min.css">
 
 
@@ -43,8 +44,8 @@
         </table>
         <div id="toolbar">
             <form id="query" action="" method="post">
-                <input type="text" class="am-form-field am-radius" placeholder="输入用户名进行搜索" style="width: 84%; display: inline-block;"/>
-                <button type="submit" class="am-btn am-btn-secondary" style="width: 15%" onclick="searchUser()">搜索</button>
+                <input type="text" class="am-form-field am-radius" style="width: 80%" placeholder="输入用户名进行搜索" style="width: 84%; display: inline-block;"/>
+                <button type="submit" style="width: 17%" class="am-btn am-btn-secondary" style="width: 15%" onclick="searchUser()">搜索</button>
             </form>
             <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">New User</a>
             <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Edit User</a>
